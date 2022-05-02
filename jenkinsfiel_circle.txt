@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building..."
-                bat 'python circle.py'
+                sh 'python circle.py'
                 
             }
         }
@@ -20,7 +20,7 @@ pipeline {
         stage('Unit testing...') {
             steps {
                 echo "Unit Testing..."
-                bat 'python -m unittest test_circle.py'
+                sh 'python -m unittest test_circle.py'
                 
             }
         }
