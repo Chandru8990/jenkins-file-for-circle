@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Checkout..."
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Chandru8990/area_of_circle.git']]])
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                echo "Building..."
+                bat 'python circle.py'
+                
+            }
+        }
+        
+        stage('Unit testing...') {
+            steps {
+                echo "Unit Testing..."
+                bat 'python -m unittest test_circle.py'
+                
+            }
+        }
+    }
+}
